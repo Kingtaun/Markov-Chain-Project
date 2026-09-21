@@ -5,9 +5,9 @@ using namespace std;
 
 int main (){
 
-    string words[] = {"the", "cat", "sat", "down"};
+    string words[] = {"cat", "sat", "down"};
 
-    cout << joinWords(words,1,2) << endl;
+    cout << joinWords(words,0,3) << endl;
 
     return 0;
 }
