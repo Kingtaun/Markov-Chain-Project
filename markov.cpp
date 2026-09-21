@@ -35,3 +35,24 @@ int readWordsFromFile(std::string filename, std::string words[], int maxWords){
 
     return -1;
 }
+
+int buildMarkovChain(const std::string words[], int numWords, int order, std::string prefixes[], std::string suffixes[], int maxChainSize){
+
+    int count;
+
+    if (order >= 1 && order <= 3 && numWords > order && maxChainSize > 0){
+
+        for (int i = 0; i < numWords - order; i++){
+            
+            if (count < maxChainSize){
+                prefixes[i] = joinWords(words, i, order);
+                suffixes[i] = words[i + order];
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    return 0;
+}
