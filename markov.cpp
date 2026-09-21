@@ -1,6 +1,7 @@
 #include "markov.h"
 #include <string>
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -38,15 +39,15 @@ int readWordsFromFile(std::string filename, std::string words[], int maxWords){
 
 int buildMarkovChain(const std::string words[], int numWords, int order, std::string prefixes[], std::string suffixes[], int maxChainSize){
 
-    int count;
+    int count = 0;
 
     if (order >= 1 && order <= 3 && numWords > order && maxChainSize > 0){
 
         for (int i = 0; i < numWords - order; i++){
             
             if (count < maxChainSize){
-                prefixes[i] = joinWords(words, i, order);
-                suffixes[i] = words[i + order];
+                prefixes[count] = joinWords(words, i, order);
+                suffixes[count] = words[i + order];
                 count++;
             }
         }

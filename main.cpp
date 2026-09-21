@@ -5,9 +5,12 @@ using namespace std;
 
 int main (){
 
-    string words[] = {"cat", "sat", "down"};
+    string prefixes[6];
+    string sufixes[6];
 
-    cout << joinWords(words,0,3) << endl;
+    string words[] = {"the", "cat", "sat", "down"};
+
+    cout << buildMarkovChain(words,4,2,prefixes,sufixes,5) << endl;
 
     return 0;
 }
