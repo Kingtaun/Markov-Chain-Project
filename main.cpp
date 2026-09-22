@@ -14,7 +14,7 @@ int main (){
 
     string words[] = {"the", "cat", "sat", "down"};
 
-    for (int i = 0; i < 11; i++){
+    for (int i = 0; i < 10; i++){
         cout << getRandomSuffix(prefixes,suffixes,4,"the") << endl;
     }
 
