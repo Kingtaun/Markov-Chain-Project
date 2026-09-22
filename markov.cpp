@@ -57,3 +57,22 @@ int buildMarkovChain(const std::string words[], int numWords, int order, std::st
 
     return 0;
 }
+
+std::string getRandomSuffix(const std::string prefixes[], const std::string suffixes[], int chainSize, std::string currentPrefix){
+
+    int matchCount = 0;
+
+    for (int i = 0; i < chainSize; i++){
+        if (prefixes[i] == currentPrefix){
+            matchCount++;
+        }
+    }
+
+    int pick = rand() % matchCount;
+
+    if (matchCount > 0){
+        return suffixes[pick];
+    }
+
+    return "";
+}

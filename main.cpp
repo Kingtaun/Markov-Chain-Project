@@ -1,16 +1,22 @@
 #include <iostream>
 #include "markov.h"
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
 int main (){
 
-    string prefixes[6];
-    string sufixes[6];
+    srand(time(0));
+
+    string prefixes[] = {"the", "cat", "the", "the"};
+    string suffixes[] = {"cat", "sat", "dog", "bird"};
 
     string words[] = {"the", "cat", "sat", "down"};
 
-    cout << buildMarkovChain(words,4,2,prefixes,sufixes,5) << endl;
+    for (int i = 0; i < 11; i++){
+        cout << getRandomSuffix(prefixes,suffixes,4,"the") << endl;
+    }
 
     return 0;
 }
