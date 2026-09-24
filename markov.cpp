@@ -87,3 +87,7 @@ std::string getRandomPrefix(const std::string prefixes[], int chainSize){
     }
     return "";
 }
+
+std::string generateText(const std::string prefixes[], const std::string suffixes[], int chainSize, int order, int numWords){
+    
+}
