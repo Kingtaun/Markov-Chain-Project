@@ -9,14 +9,22 @@ int main (){
 
     srand(time(0));
 
-    string prefixes[] = {"the", "cat", "the", "the"};
-    string suffixes[] = {"cat", "sat", "dog", "bird"};
+    string fileName;
+    int chainOrder;
 
-    string words[] = {"the", "cat", "sat", "down"};
+    cout << "What is the name of the file you would like to use?" << endl;
+    cin >> fileName;
 
-    for (int i = 0; i < 10; i++){
-        cout << getRandomPrefix(prefixes, 4) << endl;
-    }
+    do {
+        cout << "What order would you like to use?" << endl;
+        cin >> chainOrder;
+
+        if (chainOrder <= 0){
+            cout << "invalid order" << endl;
+            chainOrder = 0;
+        }
+
+    } while (chainOrder <= 0);
 
     return 0;
 }

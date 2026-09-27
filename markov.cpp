@@ -58,7 +58,7 @@ int buildMarkovChain(const std::string words[], int numWords, int order, std::st
     return 0;
 }
 
-std::string getRandomSuffix(const std::string prefixes[], const std::string suffixes[], int chainSize, std::string currentPrefix){
+string getRandomSuffix(const std::string prefixes[], const std::string suffixes[], int chainSize, std::string currentPrefix){
 
     if (chainSize > 0){
 
@@ -80,7 +80,7 @@ std::string getRandomSuffix(const std::string prefixes[], const std::string suff
     return "";
 }
 
-std::string getRandomPrefix(const std::string prefixes[], int chainSize){
+string getRandomPrefix(const std::string prefixes[], int chainSize){
     if (chainSize > 0){
         int index = rand() % chainSize;
         return prefixes[index];
@@ -88,6 +88,50 @@ std::string getRandomPrefix(const std::string prefixes[], int chainSize){
     return "";
 }
 
-std::string generateText(const std::string prefixes[], const std::string suffixes[], int chainSize, int order, int numWords){
+string generateText(const std::string prefixes[], const std::string suffixes[], int chainSize, int order, int numWords){
+
+    if (chainSize > 0 && (order > 0 && order <= 3) && numWords >= order){
+
+        string currentPrefix = getRandomPrefix(prefixes,chainSize);
+
+        string currentWords[3]; // supports the validated orders 1, 2, and 3
+        int wordIndex = 0;                                                                                                                                                                 
+        string temp = "";
+
+        for (int i = 0; i < currentPrefix.length(); i++) {     
+
+             if (currentPrefix[i] == ' ') {
+
+                currentWords[wordIndex] = temp;                                                                                                                                            
+                wordIndex++;                                                                                                                                                               
+                temp = "";    
+
+            } else {                                                                                                                                                                       
+                temp += currentPrefix[i];  
+            }
+        }
+
+        currentWords[wordIndex] = temp; // don't forget the last word
+
+        string result = currentPrefix;
+
+        for (int i = 0; i < numWords - order; i++){
+
+            string newWord = getRandomSuffix(prefixes, suffixes, chainSize, currentPrefix);
+
+            if (newWord != ""){
+                result = result + " " + newWord;
+                currentPrefix = newWord;
+
+            } else {
+                break;
+            }
+        }
+
+        return result;
+
+    }
+
+    return "";
     
 }
