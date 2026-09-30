@@ -71,7 +71,6 @@ string getRandomSuffix(const std::string prefixes[], const std::string suffixes[
         }
 
         if (matchCount > 0){
-        
             int pick = rand() % matchCount;
             return suffixes[pick];
         }
@@ -114,19 +113,24 @@ string generateText(const std::string prefixes[], const std::string suffixes[], 
         currentWords[wordIndex] = temp; // don't forget the last word
 
         string result = currentPrefix;
+        string newWord;
 
         for (int i = 0; i < numWords - order; i++){
-
-            string newWord = getRandomSuffix(prefixes, suffixes, chainSize, currentPrefix);
+            newWord = getRandomSuffix(prefixes, suffixes, chainSize, currentPrefix);
 
             if (newWord != ""){
                 result = result + " " + newWord;
-                currentPrefix = newWord;
-
             } else {
                 break;
             }
         }
+
+        for (int j = 0; j < order - 1; j++){
+            currentWords[j] = currentWords[j+1];
+        }
+
+        currentWords[order - 1] = newWord;
+        currentPrefix = joinWords(currentWords, 0, order);
 
         return result;
 
