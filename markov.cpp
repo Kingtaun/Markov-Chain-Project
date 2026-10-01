@@ -1,5 +1,6 @@
 #include "markov.h"
 #include <string>
+#include <vector>
 #include <fstream>
 #include <iostream>
 
@@ -40,15 +41,17 @@ int readWordsFromFile(std::string filename, std::string words[], int maxWords){
 int buildMarkovChain(const std::string words[], int numWords, int order, std::string prefixes[], std::string suffixes[], int maxChainSize){
 
     int count = 0;
+    int i = 0;
 
     if (order >= 1 && order <= 3 && numWords > order && maxChainSize > 0){
 
-        for (int i = 0; i < numWords - order; i++){
+        while (i < numWords - order && count < maxChainSize){
             
             if (count < maxChainSize){
                 prefixes[count] = joinWords(words, i, order);
                 suffixes[count] = words[i + order];
                 count++;
+                i++;
             }
         }
 
@@ -64,21 +67,18 @@ string getRandomSuffix(const std::string prefixes[], const std::string suffixes[
 
         int matchCount = 0;
         
-
         for (int i = 0; i < chainSize; i++){
             if (prefixes[i] == currentPrefix){
                 matchCount++;
             }
         }
 
-        string matches[matchCount];
-        int j = 0;
+        vector<string> matches;
 
         if (matchCount > 0){
             for (int i = 0; i < chainSize; i++){
                 if (prefixes[i] == currentPrefix){
-                    matches[j] = suffixes[i];
-                    j++;
+                    matches.push_back(suffixes[i]);
                 }
             }
 
@@ -108,16 +108,16 @@ string generateText(const std::string prefixes[], const std::string suffixes[], 
         int wordIndex = 0;                                                                                                                                                                 
         string temp = "";
 
-        for (int i = 0; i < currentPrefix.length(); i++) {     
+        for (char i : currentPrefix) {     
 
-             if (currentPrefix[i] == ' ') {
+             if (i == ' ') {
 
                 currentWords[wordIndex] = temp;                                                                                                                                            
                 wordIndex++;                                                                                                                                                               
                 temp = "";    
 
             } else {                                                                                                                                                                       
-                temp += currentPrefix[i];  
+                temp += i;  
             }
         }
 
