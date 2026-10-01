@@ -22,24 +22,35 @@ int main (){
     int count = readWordsFromFile("test.txt", words, 1000);
     cout << "Read " << count << " words" << endl;
 
-    for (int i = 0; i < 20 && i < count; i++) {
+    for (int i = 0; i < 35 && i < count; i++) {
         cout << words[i] << endl;
     }
 
     cout << "\n\n";
 
-    std::string prefixes[1000], suffixes[1000];
+    string prefixes[1000], suffixes[1000];
     int chainSize = buildMarkovChain(words, count, 1, prefixes, suffixes, 1000);
 
-    for (int i = 0; i < 20 && i < chainSize; i++) {
-        std::cout << "[" << prefixes[i] << "] -> [" << suffixes[i] << "]" << std::endl;
+    for (int i = 0; i < 35 && i < chainSize; i++) {
+        cout << "[" << prefixes[i] << "] -> [" << suffixes[i] << "]" << endl;
     }
 
     cout << "\n\n";
 
     for (int i = 0; i < 10; i++) {
-        std::cout << getRandomSuffix(prefixes, suffixes, chainSize, "bald.") << std::endl;
+        cout << getRandomSuffix(prefixes, suffixes, chainSize, "I") << endl;
     }
+
+    cout << "\n\n";
+
+    for (int i = 0; i < 5; i++) {
+        cout << getRandomPrefix(prefixes, chainSize) << endl;
+    }
+
+    cout << "\n\n";
+
+    string output = generateText(prefixes, suffixes, chainSize, 1, 100);
+    cout << output << endl;
 
     cout << "\n\n";
 

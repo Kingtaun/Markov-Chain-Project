@@ -81,10 +81,10 @@ string getRandomSuffix(const std::string prefixes[], const std::string suffixes[
                     j++;
                 }
             }
-        }
 
-        int pick = rand() % matchCount;
-        return matches[pick];
+            int pick = rand() % matchCount;
+            return matches[pick];
+        }
     }
 
     return "";
@@ -134,14 +134,14 @@ string generateText(const std::string prefixes[], const std::string suffixes[], 
             } else {
                 break;
             }
-        }
 
-        for (int j = 0; j < order - 1; j++){
-            currentWords[j] = currentWords[j+1];
-        }
+            for (int j = 0; j < order - 1; j++){
+                currentWords[j] = currentWords[j+1];
+            }
 
-        currentWords[order - 1] = newWord;
-        currentPrefix = joinWords(currentWords, 0, order);
+            currentWords[order - 1] = newWord;
+            currentPrefix = joinWords(currentWords, 0, order);
+        }
 
         return result;
 
