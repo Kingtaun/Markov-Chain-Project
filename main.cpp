@@ -38,7 +38,7 @@ int main (){
     cout << "\n\n";
 
     for (int i = 0; i < 10; i++) {
-        std::cout << getRandomSuffix(prefixes, suffixes, chainSize, "am") << std::endl;
+        std::cout << getRandomSuffix(prefixes, suffixes, chainSize, "bald.") << std::endl;
     }
 
     cout << "\n\n";
